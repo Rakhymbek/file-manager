@@ -1,8 +1,9 @@
-import showCurrentDir from "./utils/showDir.js";
 import * as readline from "node:readline";
-import up from "./handler/up.js";
-import cd from "./handler/cd.js";
+import showCurrentDir from "./utils/showDir.js";
 import splitReadline from "./utils/splitReadline.js";
+import up from "./handler/navigation/up.js";
+import cd from "./handler/navigation/cd.js";
+import ls from "./handler/navigation/ls.js";
 
 const start = () => {
   const username = process.argv[2].replace("--username=", "");
@@ -25,6 +26,9 @@ rl.on("line", (input) => {
       break;
     case "cd":
       cd(args);
+      break;
+    case "ls":
+      ls();
       break;
     default:
       break;
