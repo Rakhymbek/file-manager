@@ -1,6 +1,8 @@
 import showCurrentDir from "./utils/showDir.js";
 import * as readline from "node:readline";
-import up from './handler/up.js';
+import up from "./handler/up.js";
+import cd from "./handler/cd.js";
+import splitReadline from "./utils/splitReadline.js";
 
 const start = () => {
   const username = process.argv[2].replace("--username=", "");
@@ -16,7 +18,15 @@ const rl = readline.createInterface({
 });
 
 rl.on("line", (input) => {
-  if(input === 'up') {
-    up();
+  const { command, args } = splitReadline(input);
+  switch (command) {
+    case "up":
+      up();
+      break;
+    case "cd":
+      cd(args);
+      break;
+    default:
+      break;
   }
 });
