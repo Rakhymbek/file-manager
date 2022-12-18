@@ -7,6 +7,7 @@ import ls from "./handler/navigation/ls.js";
 import cat from "./handler/basic-operations/cat.js";
 import add from "./handler/basic-operations/add.js";
 import rn from './handler/basic-operations/rn.js';
+import getPaths from './utils/getPaths.js';
 
 const start = () => {
   const username = process.argv[2].replace("--username=", "");
@@ -40,7 +41,7 @@ rl.on("line", (input) => {
       add(args);
       break;
     case "rn":
-      rn(args);
+      rn(getPaths(args));
       break;
     default:
       break;
