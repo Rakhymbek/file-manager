@@ -4,6 +4,7 @@ import splitReadline from "./utils/splitReadline.js";
 import up from "./handler/navigation/up.js";
 import cd from "./handler/navigation/cd.js";
 import ls from "./handler/navigation/ls.js";
+import cat from "./handler/basic-operations/cat.js";
 
 const start = () => {
   const username = process.argv[2].replace("--username=", "");
@@ -29,6 +30,9 @@ rl.on("line", (input) => {
       break;
     case "ls":
       ls();
+      break;
+    case "cat":
+      cat(args);
       break;
     default:
       break;
