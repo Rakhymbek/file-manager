@@ -1,13 +1,14 @@
 import * as readline from "node:readline";
 import showCurrentDir from "./utils/showDir.js";
 import splitReadline from "./utils/splitReadline.js";
+import getPaths from "./utils/getPaths.js";
 import up from "./handler/navigation/up.js";
 import cd from "./handler/navigation/cd.js";
 import ls from "./handler/navigation/ls.js";
 import cat from "./handler/basic-operations/cat.js";
 import add from "./handler/basic-operations/add.js";
-import rn from './handler/basic-operations/rn.js';
-import getPaths from './utils/getPaths.js';
+import rn from "./handler/basic-operations/rn.js";
+import copy from "./handler/basic-operations/copy.js";
 
 const start = () => {
   const username = process.argv[2].replace("--username=", "");
@@ -42,6 +43,9 @@ rl.on("line", (input) => {
       break;
     case "rn":
       rn(getPaths(args));
+      break;
+    case "cp":
+      copy(getPaths(args));
       break;
     default:
       break;
