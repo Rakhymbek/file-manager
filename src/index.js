@@ -6,6 +6,7 @@ import cd from "./handler/navigation/cd.js";
 import ls from "./handler/navigation/ls.js";
 import cat from "./handler/basic-operations/cat.js";
 import add from "./handler/basic-operations/add.js";
+import rn from './handler/basic-operations/rn.js';
 
 const start = () => {
   const username = process.argv[2].replace("--username=", "");
@@ -37,6 +38,9 @@ rl.on("line", (input) => {
       break;
     case "add":
       add(args);
+      break;
+    case "rn":
+      rn(args);
       break;
     default:
       break;
