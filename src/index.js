@@ -10,6 +10,7 @@ import add from "./handler/basic-operations/add.js";
 import rn from "./handler/basic-operations/rn.js";
 import copy from "./handler/basic-operations/copy.js";
 import remove from './handler/basic-operations/remove.js';
+import mv from './handler/basic-operations/mv.js';
 
 const start = () => {
   const username = process.argv[2].replace("--username=", "");
@@ -47,6 +48,9 @@ rl.on("line", (input) => {
       break;
     case "cp":
       copy(getPaths(args));
+      break;
+    case "mv":
+      mv(getPaths(args));
       break;
     case "rm":
       remove(getPaths(args));

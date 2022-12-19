@@ -1,4 +1,4 @@
-import { createReadStream, createWriteStream } from "node:fs";
+import { createReadStream, createWriteStream, rm } from "node:fs";
 import { resolve, basename } from "node:path";
 import { pipeline } from "node:stream";
 import { ERRORS } from "../../constants.js";
@@ -7,7 +7,10 @@ import { checkIsDirectory } from "../../helper/checkIsDirectory.js";
 import checkIsFileExists from "../../helper/checkIsFileExists.js";
 import showCurrentDir from "../../utils/showDir.js";
 
-export default async function copy([__filePath, __newFilePath]) {
+export default async function copy(
+  [__filePath, __newFilePath],
+  toBeRemoved = false
+) {
   try {
     const __dirPath = resolve(__newFilePath, basename(__filePath));
     await checkIsDirectory(__filePath);
@@ -25,6 +28,11 @@ export default async function copy([__filePath, __newFilePath]) {
       if (err) console.log(ERRORS.notDir);
       showCurrentDir();
     });
+    if (toBeRemoved) {
+      rm(__filePath, (err) => {
+        if (err) console.log(ERRORS.notDir);
+      });
+    }
   } catch (err) {
     console.error(ERRORS.error);
   }
