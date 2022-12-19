@@ -14,6 +14,8 @@ import mv from "./handler/basic-operations/mv.js";
 import os from "./handler/os/os.js";
 import hash from "./handler/hash/hash.js";
 import { ERRORS } from "./constants.js";
+import compress from "./handler/zip/compress.js";
+import decompress from './handler/zip/decompress.js';
 
 const start = () => {
   const username = process.argv[2].replace("--username=", "");
@@ -64,6 +66,12 @@ rl.on("line", (input) => {
       break;
     case "hash":
       hash(getPaths(args));
+      break;
+    case "compress":
+      compress(getPaths(args));
+      break;
+    case "decompress":
+      decompress(getPaths(args));
       break;
     default:
       console.log(ERRORS.inputErr);
