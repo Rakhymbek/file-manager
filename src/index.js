@@ -12,6 +12,8 @@ import copy from "./handler/basic-operations/copy.js";
 import remove from "./handler/basic-operations/remove.js";
 import mv from "./handler/basic-operations/mv.js";
 import os from "./handler/os/os.js";
+import hash from "./handler/hash/hash.js";
+import { ERRORS } from "./constants.js";
 
 const start = () => {
   const username = process.argv[2].replace("--username=", "");
@@ -60,7 +62,12 @@ rl.on("line", (input) => {
       os(args);
       showCurrentDir();
       break;
+    case "hash":
+      hash(getPaths(args));
+      break;
     default:
+      console.log(ERRORS.inputErr);
+      showCurrentDir();
       break;
   }
 });

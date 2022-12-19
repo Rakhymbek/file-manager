@@ -35,5 +35,6 @@ export default async function copy(
     }
   } catch (err) {
     console.error(ERRORS.error);
+    showCurrentDir();
   }
 }
