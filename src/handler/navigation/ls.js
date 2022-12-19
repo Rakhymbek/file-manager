@@ -1,5 +1,6 @@
 import showCurrentDir from "../../utils/showDir.js";
 import { readdir } from "node:fs/promises";
+import { ERRORS } from "../../constants.js";
 
 export default async function ls() {
   try {
@@ -14,7 +15,7 @@ export default async function ls() {
     console.table(sortedFiles);
     showCurrentDir();
   } catch (err) {
-    console.error(`chdir: ${err}`);
+    console.log(ERRORS.error);
   }
 }
 

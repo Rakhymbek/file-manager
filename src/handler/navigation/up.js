@@ -1,4 +1,5 @@
 import { chdir } from "node:process";
+import { ERRORS } from '../../constants.js';
 import showCurrentDir from "../../utils/showDir.js";
 
 export default function up() {
@@ -6,6 +7,6 @@ export default function up() {
     chdir("..");
     showCurrentDir();
   } catch (err) {
-    console.error(`chdir: ${err}`);
+    console.log(ERRORS.error);
   }
 }
